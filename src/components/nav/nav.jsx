@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./nav.css";
 
 function Nav() {
@@ -9,7 +9,7 @@ function Nav() {
             <div id="nav-links">
                 <a href="https://github.com/nickdraper8"><i className="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/nicholas-draper/"><i className="fab fa-linkedin"></i></a>
-                <a href="https://nickdraper8.github.io/portfolio-page/"><i class="fas fa-address-card"></i></a>
+                <a href="https://nickdraper8.github.io/portfolio-page/"><i className="fas fa-address-card"></i></a>
             </div>
         </nav>    
     )
