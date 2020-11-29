@@ -1,0 +1,39 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    width: 300px;
+    color: #dd0f0f;
+}
+
+nav div {
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav a {
+    font-size: 30px;
+    margin: 0px 10px;
+    color: #dd0f0f;
+}
+
+@media(max-width: 870px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav h1 {
+        margin: 5px 0px 20px 0px;
+    }
+    nav h2 {
+        margin: 10px;
+        font-size: 20px;
+    }
+    nav div {
+        justify-content: center;
+    }
+}
