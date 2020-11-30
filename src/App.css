@@ -47,5 +47,23 @@ h2 {
 }
 
 h3 {
-  
+  margin: 0px 20px 10px;
+  align-self: flex-start;
+}
+
+button {
+  padding: 10px 10px;
+  font-size: 14px;
+  color: white;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 4px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .5s;
+}
+
+button:hover {
+  background-color: rgb(224, 0, 0);
+  border: 1px solid rgb(224, 0, 0);
 }
