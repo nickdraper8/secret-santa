@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { shuffleArray, makeAssignments } from "../../util/array_utility";
 import "./review.css";
 class Review extends React.Component {
@@ -15,7 +16,7 @@ class Review extends React.Component {
     }
 
     handleEdit() {
-        console.log("handle edit")
+        this.props.navigateToNameList();
     }
 
     handleRevealAssignments() {
@@ -81,4 +82,4 @@ class Review extends React.Component {
     }
 }
 
-export default Review;
+export default withRouter(Review);

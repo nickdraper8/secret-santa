@@ -15,6 +15,7 @@ class NameList extends React.Component {
         this.addParticipant = this.addParticipant.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.navigateToReview = this.navigateToReview.bind(this);
+        this.navigateToNameList = this.navigateToNameList.bind(this);
     }
 
     addParticipant() {
@@ -43,9 +44,14 @@ class NameList extends React.Component {
         this.setState({review: true})
     }
 
+    navigateToNameList() {
+        debugger
+        this.setState({review: false})
+    }
+
     render() {
         if (this.state.review) {
-            return <Review participants={this.state.participants} />
+            return <Review navigateToNameList={this.navigateToNameList} participants={this.state.participants} />
         } else {
             let { participants } = this.state;
             let count = participants.length === 1 ? "There is one participant." : `There are ${participants.length} participants.`
