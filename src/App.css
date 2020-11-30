@@ -63,7 +63,15 @@ button {
   transition: .5s;
 }
 
+button:focus {
+  outline: none;
+}
+
 button:hover {
   background-color: rgb(224, 0, 0);
   border: 1px solid rgb(224, 0, 0);
+}
+
+.hidden {
+  display: none;
 }

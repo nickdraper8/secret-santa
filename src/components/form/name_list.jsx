@@ -1,16 +1,20 @@
 import React from 'react';
+import Review from '../review/review';
+import { withRouter } from 'react-router-dom';
 import "./name_list.css";
 
 class NameList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            participants: [{name:'', number:''}]
+            participants: [{name:'nick', number:'1231231234'}, {name:'mike',number:'3213214321'}, {name:'pat',number:'2312314231'}],
+            review: false
         }
 
         this.deleteParticipant = this.deleteParticipant.bind(this);
         this.addParticipant = this.addParticipant.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.navigateToReview = this.navigateToReview.bind(this);
     }
 
     addParticipant() {
@@ -35,43 +39,50 @@ class NameList extends React.Component {
         }
     }
 
-    
+    navigateToReview() {
+        this.setState({review: true})
+    }
+
     render() {
-        let { participants } = this.state;
-        let count = participants.length === 1 ? "There is one participant." : `There are ${participants.length} participants.`
-        debugger
-        return(
-            <div id="name-list-container">
-                <div id="form-container">
-                    {count}
-                    <form>
-                        { participants.map((participant, idx) => {
-                            let {name, number} = participant;
-                            return(
-                                <div key={idx} className="participant-container">
-                                    <h3>Participant #{idx+1}</h3>
-                                    <div id="input-container">
-                                        <div id="first-input">
-                                            <input type="text" required value={name} onChange={this.handleInput('name', idx)}/>
-                                            <label>Participant Name</label>
+        if (this.state.review) {
+            return <Review participants={this.state.participants} />
+        } else {
+            let { participants } = this.state;
+            let count = participants.length === 1 ? "There is one participant." : `There are ${participants.length} participants.`
+            debugger
+            return(
+                <div id="name-list-container">
+                    <div id="form-container">
+                        {count}
+                        <form>
+                            { participants.map((participant, idx) => {
+                                let {name, number} = participant;
+                                return(
+                                    <div key={idx} className="participant-container">
+                                        <h3>Participant #{idx+1}</h3>
+                                        <div id="input-container">
+                                            <div id="first-input">
+                                                <input type="text" required value={name} onChange={this.handleInput('name', idx)}/>
+                                                <label>Participant Name</label>
+                                            </div>
+                                            <div>
+                                                <input type="tel" pattern="[0-9]{10}" value={number} required onChange={this.handleInput('number', idx)}/>
+                                                <label className="selected">Participant Cell-phone Number</label>
+                                                <span>Format: 6171111111</span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="tel" pattern="[0-9]{10}" value={number} required onChange={this.handleInput('number', idx)}/>
-                                            <label className="selected">Participant Cell-phone Number</label>
-                                            <span>Format: 6171111111</span>
-                                        </div>
+                                        <button type="button" onClick={this.deleteParticipant(idx)}>Delete Participant</button>
                                     </div>
-                                    <button type="button" onClick={this.deleteParticipant(idx)}>Delete Participant</button>
-                                </div>
-                            )
-                        })}
-                    </form>
+                                )
+                            })}
+                        </form>
+                    </div>
+                    <button className="add-participant-btn" type="button" onClick={this.addParticipant}>Add Participant</button>
+                    <button className="add-participant-btn proceed-to-review" type="button" onClick={this.navigateToReview}>Proceed To Review</button>
                 </div>
-                <button className="add-participant-btn" type="button" onClick={this.addParticipant}>Add Participant</button>
-                <button className="add-participant-btn proceed-to-review" type="button" onClick={this.addParticipant}>Proceed To Review</button>
-            </div>
-        )
+            )
+        }
     }
 }
 
-export default NameList;
+export default withRouter(NameList);
