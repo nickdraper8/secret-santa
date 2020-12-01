@@ -26,9 +26,9 @@ class Review extends React.Component {
     }
 
     handleFinish() {
-        // this.state.assignments.forEach(assignment => {
-        //     sendMessage(assignment[0].name, assignment[1].name, assignment[0].number)
-        // })
+        this.state.assignments.forEach(assignment => {
+            sendMessage(assignment[0].name, assignment[1].name, assignment[0].number)
+        })
         this.props.history.push('/complete');
     }
 
