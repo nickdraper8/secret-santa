@@ -1,18 +1,34 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { shuffleArray, makeAssignments } from "../../util/array_utility";
+import { sendMessage } from "../../util/twilio_util";
 import "./review.css";
+
 class Review extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            assignments: []
+        }
 
         this.handleRevealAssignments = this.handleRevealAssignments.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleFinish = this.handleFinish.bind(this);
     }
 
+    componentDidMount() {
+        // randomize the participants array and then create assignments
+        let shuffled = [...this.props.participants];
+        shuffleArray(shuffled);
+        let assignments = makeAssignments(shuffled);
+        this.setState({ assignments })
+    }
+
     handleFinish() {
-        console.log("handle finish")
+        this.state.assignments.forEach(assignment => {
+            sendMessage(assignment[0].name, assignment[1].name, assignment[0].number)
+        })
     }
 
     handleEdit() {
@@ -29,12 +45,6 @@ class Review extends React.Component {
     }
 
     render() {
-        
-        // randomize the participants array and then create assignments
-        let shuffled = [...this.props.participants];
-        shuffleArray(shuffled);
-        let assignments = makeAssignments(shuffled);
-
         return(
             <div id="review-container">
                 <div id="review-info">
@@ -64,7 +74,7 @@ class Review extends React.Component {
                     <p>Clicking the <strong>REAVEAL</strong> button will show all the assignments. If you, the creator, are involved in the Secret Santa viewing this data is not reccomended.</p>
                     <button type="button" id="reveal-btn" onClick={this.handleRevealAssignments}>REVEAL</button>
                     <div id="assignments" className="hidden">
-                        {assignments.map((assignment,idx) => {
+                        {this.state.assignments.map((assignment,idx) => {
                         let giftGiver = assignment[0].name;
                         let giftReciever = assignment[1].name;
                         return(

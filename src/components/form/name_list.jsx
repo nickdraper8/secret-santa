@@ -45,7 +45,6 @@ class NameList extends React.Component {
     }
 
     navigateToNameList() {
-        debugger
         this.setState({review: false})
     }
 
@@ -55,7 +54,6 @@ class NameList extends React.Component {
         } else {
             let { participants } = this.state;
             let count = participants.length === 1 ? "There is one participant." : `There are ${participants.length} participants.`
-            debugger
             return(
                 <div id="name-list-container">
                     <div id="form-container">
