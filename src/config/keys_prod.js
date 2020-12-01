@@ -1,3 +1,3 @@
 module.exports = {
-  twilioKey: process.env.TWILIO_KEY
+  twilioKey: process.env.REACT_APP_TWILIO_KEY
 };
