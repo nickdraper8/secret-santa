@@ -90,3 +90,9 @@
         font-size: 12px;
     }
 }
+
+@media(max-width: 400px) {
+    #review-container {
+        font-size: 10px;
+    }
+}

@@ -49,7 +49,7 @@ class Review extends React.Component {
                         let {name, number} = participant;
                         number = number.slice(0,3) + "-" + number.slice(3,6) + "-" + number.slice(6);
                         return(
-                            <div>
+                            <div key={idx}>
                                 <strong>Participant #{idx+1}</strong>
                                 <span>{name}</span>
                                 <span>{number}</span>
@@ -64,11 +64,11 @@ class Review extends React.Component {
                     <p>Clicking the <strong>REAVEAL</strong> button will show all the assignments. If you, the creator, are involved in the Secret Santa viewing this data is not reccomended.</p>
                     <button type="button" id="reveal-btn" onClick={this.handleRevealAssignments}>REVEAL</button>
                     <div id="assignments" className="hidden">
-                        {assignments.map(assignment => {
+                        {assignments.map((assignment,idx) => {
                         let giftGiver = assignment[0].name;
                         let giftReciever = assignment[1].name;
                         return(
-                            <div>
+                            <div key={idx}>
                                 <strong>{giftGiver}</strong> is purchasing a gift for <strong>{giftReciever}</strong>
                             </div>
                         )
