@@ -47,6 +47,14 @@
     text-align: initial;
 }
 
+#directions-container img {
+    width: 70%;
+    max-height: 500px;
+    margin: 0px auto;
+}
+
+
+
 @media(max-width: 650px) {
     #directions-container {
         width: 80%;

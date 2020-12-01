@@ -75,12 +75,10 @@ class NameList extends React.Component {
     }
 
     render() {
-        console.log(this.state.errors)
         let errors = ''
         errors = this.state.errors.map(error => {
             return <li>{error}</li>
         })
-        console.log(errors);
         if (this.state.review) {
             return(
                     <>
