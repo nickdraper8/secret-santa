@@ -1,6 +1,6 @@
 import Nav from "./components/nav/nav";
 import NameList from './components/form/name_list';
-import Review from "./components/review/review";
+import Finish from "./components/finish/finish";
 import { Route, HashRouter } from 'react-router-dom';
 import './App.css';
 
@@ -9,8 +9,9 @@ function App() {
     <div className="App">
       <HashRouter>
         <Nav />
-        <Route path="/" component={NameList} />
-        <Route path="/review" component={Review} />
+        
+        <Route path="/complete" component={Finish} />
+        <Route exact path="/" component={NameList} />
       </HashRouter>
     </div>
   );

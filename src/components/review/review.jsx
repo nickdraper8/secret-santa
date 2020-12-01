@@ -26,9 +26,10 @@ class Review extends React.Component {
     }
 
     handleFinish() {
-        this.state.assignments.forEach(assignment => {
-            sendMessage(assignment[0].name, assignment[1].name, assignment[0].number)
-        })
+        // this.state.assignments.forEach(assignment => {
+        //     sendMessage(assignment[0].name, assignment[1].name, assignment[0].number)
+        // })
+        this.props.history.push('/complete');
     }
 
     handleEdit() {
@@ -49,7 +50,7 @@ class Review extends React.Component {
             <div id="review-container">
                 <div id="review-info">
                     <h2>Review Info</h2>
-                    <p>Here is the info of all the participants you have entered. If any of the informaion is incorrect or you would like to edit anything about the list, please hit the <strong>EDIT</strong> button. If you are happy with the information, please click the <strong>FINISH</strong> button to send anonymous SMS assignments.</p>
+                    <p>Here is the info of all the participants you have entered. If any of the information is incorrect or you would like to edit anything about the list, please hit the <strong>EDIT</strong> button. If you are happy with the information, please click the <strong>FINISH</strong> button to send anonymous SMS assignments.</p>
                     <div id="review-btns">
                         <button type="button" onClick={this.handleEdit}>EDIT</button>
                         <button type="button" onClick={this.handleFinish}>FINISH</button>

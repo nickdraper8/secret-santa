@@ -106,6 +106,18 @@
     border-color: red;
 }
 
+#errors {
+    width: 80%;
+    margin: 10px auto;
+    max-width: 600px;
+}
+
+#errors li {
+    text-align: initial;
+    color: red;
+    font-weight: 800;
+}
+
 @media(max-width: 680px) {
     .participant-container label {
         font-size: 12px;
@@ -142,5 +154,10 @@
     .participant-container input:valid + label {
         font-size: 7px;
         top: -12px;
+    }
+
+    .participant-container label {
+        font-size: 7px;
+        top: 14px;
     }
 }

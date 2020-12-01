@@ -1,5 +1,6 @@
 import React from 'react';
 import Review from '../review/review';
+import Directions from '../directions/directions';
 import { withRouter } from 'react-router-dom';
 import "./name_list.css";
 
@@ -7,8 +8,9 @@ class NameList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            participants: [{name:'nick', number:'6177753633'}, {name:'kenzie',number:'6179228988'}, {name:'jen',number:'6177630478'}],
-            review: false
+            participants: [{name:'', number:''}],
+            review: false,
+            errors: [],
         }
 
         this.deleteParticipant = this.deleteParticipant.bind(this);
@@ -16,6 +18,7 @@ class NameList extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.navigateToReview = this.navigateToReview.bind(this);
         this.navigateToNameList = this.navigateToNameList.bind(this);
+        this.checkForErrors = this.checkForErrors.bind(this);
     }
 
     addParticipant() {
@@ -48,42 +51,84 @@ class NameList extends React.Component {
         this.setState({review: false})
     }
 
+    checkForErrors() {
+        let inputs = document.querySelectorAll("input");
+        let errors = [];
+        if (this.state.participants.length < 2) {
+            errors = ["You need at least 2 participants"]
+        } else {
+            for (let i = 0; i < inputs.length; i++) {
+                if (!inputs[i].checkValidity()) {
+                    errors.push(inputs[i].name)
+                }
+            }   
+        }
+        if (errors.length === 0) {
+            this.setState({review: true, errors: []})
+        } else {
+            this.setState({ errors })
+        }
+    }
+
+    clearErrors() {
+        this.setState({ errors: [] })
+    }
+
     render() {
+        console.log(this.state.errors)
+        let errors = ''
+        errors = this.state.errors.map(error => {
+            return <li>{error}</li>
+        })
+        console.log(errors);
         if (this.state.review) {
-            return <Review navigateToNameList={this.navigateToNameList} participants={this.state.participants} />
+            return(
+                    <>
+                        <Directions />
+                        <Review navigateToNameList={this.navigateToNameList} participants={this.state.participants} />
+                    </>
+            )
         } else {
             let { participants } = this.state;
             let count = participants.length === 1 ? "There is one participant." : `There are ${participants.length} participants.`
             return(
-                <div id="name-list-container">
-                    <div id="form-container">
-                        {count}
-                        <form>
-                            { participants.map((participant, idx) => {
-                                let {name, number} = participant;
-                                return(
-                                    <div key={idx} className="participant-container">
-                                        <h3>Participant #{idx+1}</h3>
-                                        <div id="input-container">
-                                            <div id="first-input">
-                                                <input type="text" required value={name} onChange={this.handleInput('name', idx)}/>
-                                                <label>Participant Name</label>
+                <>
+                    <Directions />
+                    <div id="name-list-container">
+                        <div id="form-container">
+                            {count}
+                            <form>
+                                { participants.map((participant, idx) => {
+                                    let {name, number} = participant;
+                                    let nameInput = `Participant ${idx+1} name field cannot be empty`;
+                                    let numberInput = `Participant ${idx+1} number format is invalid`
+                                    return(
+                                        <div key={idx} className="participant-container">
+                                            <h3>Participant #{idx+1}</h3>
+                                            <div id="input-container">
+                                                <div id="first-input">
+                                                    <input name={nameInput} type="text" required value={name} onChange={this.handleInput('name', idx)}/>
+                                                    <label>Participant Name</label>
+                                                </div>
+                                                <div>
+                                                    <input name={numberInput} type="tel" pattern="[0-9]{10}" value={number} required onChange={this.handleInput('number', idx)}/>
+                                                    <label className="selected">Participant Cell-phone Number</label>
+                                                    <span>Format: 6171111111</span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <input type="tel" pattern="[0-9]{10}" value={number} required onChange={this.handleInput('number', idx)}/>
-                                                <label className="selected">Participant Cell-phone Number</label>
-                                                <span>Format: 6171111111</span>
-                                            </div>
+                                            <button type="button" onClick={this.deleteParticipant(idx)}>Delete Participant</button>
                                         </div>
-                                        <button type="button" onClick={this.deleteParticipant(idx)}>Delete Participant</button>
-                                    </div>
-                                )
-                            })}
-                        </form>
+                                    )
+                                })}
+                            </form>
+                        </div>
+                        <ul id="errors">
+                            {errors}
+                        </ul>
+                        <button className="add-participant-btn" type="button" onClick={this.addParticipant}>Add Participant</button>
+                        <button className="add-participant-btn proceed-to-review" type="button" onClick={this.checkForErrors}>Proceed To Review</button>
                     </div>
-                    <button className="add-participant-btn" type="button" onClick={this.addParticipant}>Add Participant</button>
-                    <button className="add-participant-btn proceed-to-review" type="button" onClick={this.navigateToReview}>Proceed To Review</button>
-                </div>
+                </>
             )
         }
     }
