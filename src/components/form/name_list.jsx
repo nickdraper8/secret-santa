@@ -7,7 +7,7 @@ class NameList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            participants: [{name:'nick', number:'1231231234'}, {name:'mike',number:'3213214321'}, {name:'pat',number:'2312314231'}],
+            participants: [{name:'nick', number:'6177753633'}, {name:'kenzie',number:'6179228988'}, {name:'jen',number:'6177630478'}],
             review: false
         }
 
