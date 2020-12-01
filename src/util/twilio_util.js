@@ -4,10 +4,10 @@ const keys = require('../config/keys');
 export const sendMessage = (giftGiver, giftReciever, giftGiverNumber) => {
 
     let message = `Hey ${giftGiver}, pssstt! This is Nick Draper's Secret Santa App letting you know that you will be buying a gift for ${giftReciever}. Happy Holidays!`
-    debugger
+    console.log(keys.twilioKey);
     return axios({
         "method":"POST",
-        "url":`https://twilio-sms.p.rapidapi.com/2010-04-01/Accounts/a/Messages.json`,
+        "url":'https://twilio-sms.p.rapidapi.com/2010-04-01/Accounts/AC93f6ddc8d8302b0df563d63791bb6a8f/Messages.json',
         "headers":{
         "content-type":"application/json",
         "x-rapidapi-host":"twilio-sms.p.rapidapi.com",
