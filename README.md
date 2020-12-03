@@ -16,3 +16,6 @@ Each participant will recieve a message briefly letting them know who their gift
 <br></br>
 /\/\ gif showing phone message goes here/\/\
 <br></br>
+
+## Code Snippets
+### Creating the gift giver - gift reciever relationships
