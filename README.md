@@ -6,11 +6,11 @@ Have you ever been annoyed with other online secret santa generators that make y
 <br></br>
 First, you are shown a page where you can view the directions if you aren't familiar with the app, or head straight into adding participants onto your event.
 <br></br>
-/\/\ gif showing first page goes here/\/\
+<img align='center' src='./firstpage.gif' alt='firstpage' />
 <br></br>
 Once finished, head to the review page where you can review the information you entered, and if the creator wants, they can view the pairings the app generated. If the creator is involved in the secret santa event and wants to keep it anonymous, just click the finish button and send out the SMS messages!
 <br></br>
-/\/\ gif showing second page goes here/\/\
+<img align='center' src='./second-page.gif' alt='secondpage' />
 <br></br>
 Each participant will recieve a message briefly letting them know who their gift recipient is. No further emails, text messages, or anything will bother anyone. That's it, it's that simple!
 <br></br>
