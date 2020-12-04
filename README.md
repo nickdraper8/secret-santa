@@ -14,7 +14,7 @@ Once finished, head to the review page where you can review the information you 
 <br></br>
 Each participant will recieve a message briefly letting them know who their gift recipient is. No further emails, text messages, or anything will bother anyone. That's it, it's that simple!
 <br></br>
-<img align='center' src='./phonegif.gif' alt='secondpage' />
+<img align='center' height="600px" src='./phonegif.gif' alt='phonegif' />
 <br></br>
 
 ## Code Snippets
