@@ -19,7 +19,7 @@ Each participant will recieve a message briefly letting them know who their gift
 
 ## Code Snippets
 ### Creating the gift giver - gift reciever relationships
-In order to create a randomized set of relationships for each of the participants, I decided creating a structure similar to a looped singly-linked list. First, however, I would need to randomize the list of participants. To do this, I used the <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm">Durstenfeld shuffle</a>, an optimized version of the Fisher-Yates arra shuffle algorithm. 
+In order to create a randomized set of relationships for each of the participants, I decided creating a structure similar to a looped singly-linked list. First, however, I would need to randomize the list of participants. To do this, I used the <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm">Durstenfeld shuffle</a>, an optimized version of the Fisher-Yates array shuffle algorithm. 
 ```Javascript
 // src/util/array_utility.js
 export function shuffleArray(array) {
