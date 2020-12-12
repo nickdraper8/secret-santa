@@ -19,3 +19,33 @@ Each participant will recieve a message briefly letting them know who their gift
 
 ## Code Snippets
 ### Creating the gift giver - gift reciever relationships
+In order to create a randomized set of relationships for each of the participants, I decided creating a structure similar to a looped singly-linked list. First, however, I would need to randomize the list of participants. To do this, I used the <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm">Durstenfeld shuffle</a>, an optimized version of the Fisher-Yates arra shuffle algorithm. 
+```Javascript
+// src/util/array_utility.js
+export function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    };
+};
+```
+Next, I iterate through the suffled array, assigning the current participant the next participant in the list. Once I reach the last the participant, I assign them the first participant in the list. Here is a diagram of what the array looks like and how it works, as well as the code that generates it.
+<br></br>
+<img align='center' height="600px" src='./Screen Shot 2020-12-12 at 4.12.25 PM.png' alt='phonegif' />
+<br></br>
+```Javascript
+// src/util/array_utility.js
+export function makeAssignments(array) {
+    let assignments = [];
+    for (let i = 0; i < array.length; i++) {
+        if (i === array.length-1) {
+            assignments.push([array[i], array[0]])
+        } else {
+            assignments.push([array[i], array[i+1]])
+        }
+    }
+    return assignments
+}
+```
